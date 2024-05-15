@@ -8,9 +8,9 @@ Translates musical notes to keyboard inputs with python
 
 ### Installation
 
--Install python 3 (tested on 3.11.9)
+- Install python 3 (tested on 3.11.9)
 
--Clone repo
+- Clone repo
 ```python
 # Install python dependencies
 $ pip install -r requirements.txt
