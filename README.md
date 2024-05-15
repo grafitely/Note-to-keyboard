@@ -6,7 +6,7 @@
 
 ### Description
 
-Translates musical notes to keyboard inputs with python, made for me to play ocarina of time with an ocarina
+Translates musical notes to keyboard inputs with python
 
 ### Installation
 
