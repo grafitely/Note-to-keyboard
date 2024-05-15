@@ -1,2 +1,2 @@
-# NoteParser
-takes in a musical note and maps it to a keyboard input
+# Note to keyboard
+translates musical notes to keyboard inputs
