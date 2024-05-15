@@ -24,4 +24,4 @@ then just run the program and it should just work.
 
 ### Contributing
 
-If you find any bugs with the program or have suggestions on how to improve the program use the [issue tracker](https://github.com/grafitely/Note-to-keyboard/issues)
+If you find any bugs with the program or have suggestions on how to improve it use the [issue tracker](https://github.com/grafitely/Note-to-keyboard/issues)
