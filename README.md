@@ -1,6 +1,8 @@
 # Note to keyboard
 
 ![Stars](https://img.shields.io/github/stars/grafitely/Note-to-keyboard)
+![Licence](https://img.shields.io/github/license/grafitely/Note-to-keyboard)
+![Issues](https://img.shields.io/github/issues/grafitely/Note-to-keyboard)
 
 ### Description
 
