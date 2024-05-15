@@ -1,2 +1,9 @@
 # Note to keyboard
-translates musical notes to keyboard inputs
+
+### Description
+
+Translates musical notes to keyboard inputs with python
+
+### Installation
+
+- Download python script
