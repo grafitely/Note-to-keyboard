@@ -21,6 +21,9 @@ def pressKey(key):
     time.sleep(0.6)
     pydirectinput.keyUp(key)
 
+def tapkey(key):
+    pydirectinput.press(key)
+
 #main function
 def audio():
     while stream.is_active:
