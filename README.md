@@ -19,7 +19,7 @@ $ pip install -r requirements.txt
 
 ### Usage
 
-To edit what keys are outputted by the program and at what frequencies look at the match case in the code and edit that to your liking
+To edit what keys are outputted by the program and at what frequencies they are outputted at, look at the match case in the code and edit that to your liking
 then just run the program and it should just work.
 
 ### Contributing
