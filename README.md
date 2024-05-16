@@ -6,7 +6,7 @@
 
 ### Description
 
-Takess in microphone input, calculates frequency, and use frequency to map to a keyboard input for use in applications
+Takes in microphone input, calculates frequency, and use frequency to map to a keyboard input for use in applications
 
 ### Installation
 
