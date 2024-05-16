@@ -1,7 +1,7 @@
 #import modules
 import pyaudio
 import numpy as np
-import pyautogui
+import pydirectinput
 import time
 import threading
 
@@ -14,11 +14,12 @@ Inputformat = pyaudio.paInt16
 p = pyaudio.PyAudio()
 stream = p.open(format=Inputformat, rate=Rate, channels=1, input=True, frames_per_buffer=Chunk)
 
+
 #presses a key with pyautogui
 def pressKey(key):
-    pyautogui.keyDown(key)
+    pydirectinput.keyDown(key)
     time.sleep(0.6)
-    pyautogui.keyUp(key)
+    pydirectinput.keyUp(key)
 
 #main function
 def audio():
@@ -50,13 +51,14 @@ def audio():
                 thread_two = threading.Thread(target=pressKey, args="s")
                 thread_two.start()
             case roundedfreq if roundedfreq < 620 and roundedfreq > 600:
-                thread_two = threading.Thread(target=pressKey, args=" ")
+                thread_two = threading.Thread(target=pressKey, args="w")
                 thread_two.start()
             case roundedfreq if roundedfreq < 660 and roundedfreq > 630:
                 thread_two = threading.Thread(target=pressKey, args="a")
                 thread_two.start()
             case roundedfreq if roundedfreq < 740 and roundedfreq > 710:
-                pyautogui.leftClick()
+                thread_two = threading.Thread(target=pressKey, args="v")
+                thread_two.start()
 
 #initialise thread for the frequency grabbing
 thread_one = threading.Thread(target=audio)
