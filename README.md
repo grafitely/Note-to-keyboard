@@ -6,7 +6,7 @@
 
 ### Description
 
-Translates musical notes to keyboard inputs with python
+Takess in microphone input, calculates frequency, and use frequency to map to a keyboard input for use in applications
 
 ### Installation
 
