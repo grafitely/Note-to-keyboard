@@ -4,6 +4,9 @@ import numpy as np
 import pydirectinput
 import time
 import threading
+import keyboard
+
+iskeydown = False
 
 #define the pyaudio config
 Rate = 48000
@@ -22,7 +25,14 @@ def pressKey(key):
     pydirectinput.keyUp(key)
 
 def tapkey(key):
-    pydirectinput.press(key)
+    pydirectinput.keyDown(key)
+    pydirectinput.keyUp(key)
+
+def toggle(key):
+    if keyboard.is_pressed(key):
+        pydirectinput.keyUp(key)
+    elif not keyboard.is_pressed(key):
+        pydirectinput.keyDown(key)
 
 #main function
 def audio():
@@ -60,7 +70,16 @@ def audio():
                 thread_two = threading.Thread(target=pressKey, args="a")
                 thread_two.start()
             case roundedfreq if roundedfreq < 740 and roundedfreq > 710:
-                thread_two = threading.Thread(target=pressKey, args="v")
+                thread_two = threading.Thread(target=tapkey, args="x")
+                thread_two.start()
+            case roundedfreq if roundedfreq < 820 and roundedfreq > 790:
+                thread_two = threading.Thread(target=tapkey, args="c")
+                thread_two.start()
+            case roundedfreq if roundedfreq < 920 and roundedfreq > 860:
+                thread_two = threading.Thread(target=toggle, args="z")
+                thread_two.start()
+            case roundedfreq if roundedfreq < 970 and roundedfreq > 950:
+                thread_two = threading.Thread(target=tapkey, args="v")
                 thread_two.start()
 
 #initialise thread for the frequency grabbing
