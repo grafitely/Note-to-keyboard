@@ -18,7 +18,7 @@ p = pyaudio.PyAudio()
 stream = p.open(format=Inputformat, rate=Rate, channels=1, input=True, frames_per_buffer=Chunk)
 
 
-#presses a key with pyautogui
+#presses a key with pyautogui-
 def pressKey():
     previouskey = ""
     global keytopress
@@ -29,7 +29,6 @@ def pressKey():
         if keytopress != previouskey:
             try:
                 keyboard.press(keytopress)
-                #pydirectinput.keyDown(keytopress, None, True)
                 keyboard.release(previouskey)
                 previouskey = keytopress
             except:
