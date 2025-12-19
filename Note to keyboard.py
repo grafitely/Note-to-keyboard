@@ -6,7 +6,7 @@ import time
 import threading
 import keyboard
 
-iskeydown = False
+keytopress = ""
 
 #define the pyaudio config
 Rate = 48000
@@ -19,23 +19,29 @@ stream = p.open(format=Inputformat, rate=Rate, channels=1, input=True, frames_pe
 
 
 #presses a key with pyautogui
-def pressKey(key):
-    pydirectinput.keyDown(key)
-    time.sleep(0.6)
-    pydirectinput.keyUp(key)
+def pressKey():
+    previouskey = ""
+    global keytopress
 
-def tapkey(key):
-    pydirectinput.keyDown(key)
-    pydirectinput.keyUp(key)
+    while True:
+        print("Key to press: " + keytopress)
 
-def toggle(key):
-    if keyboard.is_pressed(key):
-        pydirectinput.keyUp(key)
-    elif not keyboard.is_pressed(key):
-        pydirectinput.keyDown(key)
+        if keytopress != previouskey:
+            try:
+                keyboard.press(keytopress)
+                #pydirectinput.keyDown(keytopress, None, True)
+                keyboard.release(previouskey)
+                previouskey = keytopress
+            except:
+                pass
+
+        time.sleep(0.01)
+        
 
 #main function
 def audio():
+    global keytopress
+
     while stream.is_active:
         #grabs data from active audio stream and runs it through a fourier transform
         data = np.frombuffer(stream.read(Chunk), dtype=np.int16)
@@ -55,33 +61,31 @@ def audio():
         #rounds the frequency for use in keyboard output
         roundedfreq = round(thefreq) 
 
+        #sets key to press
+
         match roundedfreq:
             case roundedfreq if roundedfreq < 530 and roundedfreq > 490:
-                #starts thread to send keyboard output with
-                thread_two = threading.Thread(target=pressKey, args="d")
-                thread_two.start()
-            case roundedfreq if roundedfreq < 560 and roundedfreq > 530:
-                thread_two = threading.Thread(target=pressKey, args="s")
-                thread_two.start()
+                keytopress = "d"
+            case roundedfreq if roundedfreq < 560 and roundedfreq > 530: 
+                keytopress = "s"
             case roundedfreq if roundedfreq < 620 and roundedfreq > 600:
-                thread_two = threading.Thread(target=pressKey, args="w")
-                thread_two.start()
+                keytopress = "w"
             case roundedfreq if roundedfreq < 660 and roundedfreq > 630:
-                thread_two = threading.Thread(target=pressKey, args="a")
-                thread_two.start()
+                keytopress = "a"
             case roundedfreq if roundedfreq < 740 and roundedfreq > 710:
-                thread_two = threading.Thread(target=tapkey, args="x")
-                thread_two.start()
+                keytopress = "x"
             case roundedfreq if roundedfreq < 820 and roundedfreq > 790:
-                thread_two = threading.Thread(target=tapkey, args="c")
-                thread_two.start()
+                keytopress = "c"
             case roundedfreq if roundedfreq < 920 and roundedfreq > 860:
-                thread_two = threading.Thread(target=toggle, args="z")
-                thread_two.start()
+                keytopress = "z"
             case roundedfreq if roundedfreq < 970 and roundedfreq > 950:
-                thread_two = threading.Thread(target=tapkey, args="v")
-                thread_two.start()
+                keytopress = "v"
+            case _:
+                keytopress = ""
 
 #initialise thread for the frequency grabbing
 thread_one = threading.Thread(target=audio)
 thread_one.start()
+
+thread_two = threading.Thread(target=pressKey)
+thread_two.start()
